@@ -11,13 +11,6 @@ export const theme = createTheme({
     secondary: {
       main: "#ffd300",
     },
-
-    // other: {
-    //   main: "#ffd300"
-    // }
-  },
-  shape: {
-    borderRadius: 8,
   },
   components: {
     MuiTab: {

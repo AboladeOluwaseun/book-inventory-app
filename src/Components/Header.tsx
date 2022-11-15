@@ -19,7 +19,7 @@ const Header = (props: Props) => {
           margin: "auto",
         }}
       >
-        <Typography variant="h5" sx={{ color: "#ffd300" }}>
+        <Typography variant="h5" sx={{ color: "white" }}>
           Book Inventory App
         </Typography>
       </Box>
