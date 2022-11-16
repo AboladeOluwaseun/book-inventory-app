@@ -1,17 +1,18 @@
 import { Box, Container } from "@mui/system";
 import { CircularProgress } from "@mui/material";
 import BookCard from "./BookCard";
-import { useState, useEffect } from "react";
-import { BooksData } from "../../Interfaces/bookdataInterface";
+import { BookData } from "../../Interfaces/bookdataInterface";
 
+// BookList Component prop typing
 type Props = {
-  filteredBooksData: BooksData[];
+  filteredBooksData: BookData[];
   loading: boolean;
 };
 
+// BOOKLIST COMPONENT
 const BookList = ({ filteredBooksData, loading }: Props) => {
   const bookListDisplay = filteredBooksData.map(
-    (book: BooksData, index: number) => {
+    (book: BookData, index: number) => {
       return (
         <BookCard
           key={index}

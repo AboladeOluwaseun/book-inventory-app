@@ -1,8 +1,6 @@
-import React from "react";
-import { Container } from "@mui/material";
 import Box from "@mui/material/Box";
-import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
+import { LibraryBooks } from "@mui/icons-material";
 
 type Props = {};
 
@@ -13,13 +11,15 @@ const Header = (props: Props) => {
         display="flex"
         alignItems="center"
         justifyContent="center"
+        gap={2}
         sx={{
           backgroundColor: "primary.main",
-          height: "5rem",
+          height: "7rem",
           margin: "auto",
         }}
       >
-        <Typography variant="h5" sx={{ color: "white" }}>
+        <LibraryBooks sx={{ width: "40px", height: "40px", color: "white" }} />
+        <Typography variant="h5" sx={{ color: "white", fontSize: "2rem" }}>
           Book Inventory App
         </Typography>
       </Box>

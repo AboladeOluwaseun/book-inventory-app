@@ -2,30 +2,19 @@ import Main from "./Components/Main";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+// Project Theme
 export const theme = createTheme({
   palette: {
     primary: {
-      main: "#020f14",
+      main: "#3f51b5",
     },
-
     secondary: {
-      main: "#ffd300",
-    },
-  },
-  components: {
-    MuiTab: {
-      styleOverrides: {
-        root: {
-          "&.Mui-selected": {
-            backgroundColor: "#ffffff",
-            color: "#020f14",
-            borderRadius: "10px",
-          },
-        },
-      },
+      main: "#f50057",
+      contrastText: "#8a8a8a",
     },
   },
 });
+
 function App() {
   return (
     <>

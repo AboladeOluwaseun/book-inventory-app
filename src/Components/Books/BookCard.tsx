@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import pic from "../../pic2.jpg";
+import pic from "../../pic3.jpg";
 
 type Props = {
   name: string;
@@ -18,7 +18,7 @@ const BookCard = ({ name, publisher, authors, isbn }: Props) => {
 
   const bookDetail = bookDetails.map((bookDetail, index) => {
     return (
-      <Typography key={index} sx={{ fontSize: "0.8rem", color: "white" }}>
+      <Typography key={index} sx={{ fontSize: "1.1rem", color: "black" }}>
         <Box component="span" sx={{ fontWeight: "700" }}>
           {bookDetail.key}
         </Box>
@@ -27,33 +27,47 @@ const BookCard = ({ name, publisher, authors, isbn }: Props) => {
     );
   });
 
-  const colors = ["#ffb74d", "#f50057", "#4caf50", "#8a8a8a", "#F73378"];
   return (
     <>
       <Box
         boxShadow={2}
         sx={{
-          backgroundColor: "#020f14",
+          backgroundColor: "white",
           borderRadius: "0.4rem",
           overflow: "hidden",
           margin: "0.5rem",
-          width: "240px",
+          width: "300px",
         }}
       >
-        {/* <img className="w-[100%] h-[200px] object-cover " src={pic} alt="pic" /> */}
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          width="100%"
-          height="200px"
-          fontSize="1.5rem"
-          fontWeight="700"
-          color="white"
-          sx={{ backgroundColor: colors[Math.floor(Math.random() * 4)] }}
-        >
-          {name}
-        </Box>
+        <div className="w-[100%] relative h-[300px]">
+          <img
+            className="w-full h-full object-cover relative "
+            src={pic}
+            alt="pic"
+          />
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            width="100%"
+            height="100%"
+            fontSize="1.5rem"
+            fontWeight="700"
+            position="absolute"
+            top={0}
+            color="white"
+            sx={{
+              backgroundColor: "black",
+              color: "transparent",
+              opacity: 0.4,
+              ":hover": { opacity: 0.7, color: "white" },
+            }}
+          >
+            {name}
+          </Box>
+        </div>
+
         <Box padding={1}>{bookDetail}</Box>
       </Box>
     </>

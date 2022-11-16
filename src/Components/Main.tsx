@@ -2,28 +2,40 @@ import { useState, useEffect } from "react";
 import BookList from "./Books/BookList";
 import Header from "./Header";
 import Search from "./Search";
-import { FetchedBook, BooksData } from "../Interfaces/bookdataInterface";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import {
+  FetchedBook,
+  BookData,
+  Character,
+  FetchedCharacter,
+} from "../Interfaces/bookdataInterface";
 
 type Props = {};
 
 const Main = (props: Props) => {
-  const [booksData, setBooksData] = useState<BooksData[]>([]);
-  const [filteredBooksData, setfilteredBooksData] = useState<BooksData[]>([]);
+  const [booksData, setBooksData] = useState<BookData[]>([]);
+  const [filteredBooksData, setfilteredBooksData] = useState<BookData[]>([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
+  const [searchParams, setSearchParams] = useState<string>("");
 
   const [loading, setLoading] = useState<boolean>(true);
   const BOOK_API = "https://www.anapioficeandfire.com/api/books";
+  const CHARACTERS_API = "https://www.anapioficeandfire.com/api/characters";
 
+  // Function for fetching books
   const getBooks = (API: string): void => {
     fetch(API)
       .then((res) => res.json())
-      .then((data) => {
-        let books: BooksData[] = [];
-        data.map((book: FetchedBook) => {
+      .then((fetchedBooks) => {
+        let books: BookData[] = [];
+        fetchedBooks.map((book: FetchedBook): void => {
           books.push({
             name: book.name,
             publisher: book.publisher,
             isbn: book.isbn,
             authors: book.authors,
+            url: book.url,
           });
         });
         setLoading(false);
@@ -32,8 +44,27 @@ const Main = (props: Props) => {
       });
   };
 
+  // Function for fetching characters
+  const getCharacters = (API: string): void => {
+    fetch(API)
+      .then((res) => res.json())
+      .then((data) => {
+        let characters: Character[] = [];
+        data.map((character: FetchedCharacter): void => {
+          characters.push({
+            aliases: character.aliases,
+            characterBooks: character.books,
+            name: character.name,
+          });
+        });
+        setCharacters(characters);
+      });
+  };
+
+  // on first load, useEffect calls both getBooks and getCharacters Function
   useEffect(() => {
     getBooks(BOOK_API);
+    getCharacters(CHARACTERS_API);
   }, []);
 
   return (
@@ -43,7 +74,18 @@ const Main = (props: Props) => {
         booksData={booksData}
         setFiltredBooksData={setfilteredBooksData}
         setBooksData={setBooksData}
+        characters={characters}
+        setSearchParams={setSearchParams}
       />
+
+      {searchParams && (
+        <Box display="flex" alignItems="center" justifyContent="center">
+          <Typography sx={{ marginTop: "10px", fontSize: "1.5rem" }}>
+            Search Results for {searchParams}
+          </Typography>
+        </Box>
+      )}
+
       <BookList filteredBooksData={filteredBooksData} loading={loading} />
     </div>
   );
