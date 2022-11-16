@@ -3,8 +3,8 @@
 Book Inventory App
 A book inventory application using ANAPIOFICEANDFIRE API
 
-Live demo [_here_](https://super-semolina-84e346.netlify.app)
-![Example screenshot](.src/pic4.png)
+Live demo [_here_](https://bookinventoryapp.netlify.app/)
+![Example screenshot](src/pic4.png)
 
 ## Table of Contents
 
