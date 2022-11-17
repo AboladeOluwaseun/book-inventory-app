@@ -1,6 +1,7 @@
 # Project Name
 
 Book Inventory App
+
 A book inventory application using ANAPIOFICEANDFIRE API
 
 Live demo [_here_](https://bookinventoryapp.netlify.app/)
@@ -21,9 +22,9 @@ An app that enable users too see a list of books available on the Ice and Fire A
 
 ## Technologies Used
 
-React.js - version 18.2.0
-typescript - version 4.8.4
-mui/material - version 5.10.14
+- React.js - version 18.2.0
+- Typescript - version 4.8.4
+- material ui - version 5.10.14
 
 ## Features
 
@@ -45,6 +46,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
 ## Usage
 
