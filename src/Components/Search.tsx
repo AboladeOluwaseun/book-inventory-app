@@ -37,6 +37,14 @@ const Search = ({
 }: Props) => {
   const [placeholder, setPlaceHolder] = useState<string>("");
   const inputRef = useRef<string>("");
+  const filterOptions: { title: string; value: string }[] = [
+    { title: "Name", value: "name" },
+    { title: "Publisher", value: "publisher" },
+    { title: "Author", value: "author" },
+    { title: "ISBN", value: "isbn" },
+    { title: "Character Name", value: "character name" },
+    { title: "Character Culture", value: "character culture" },
+  ];
 
   // This function is called  onKeyUp
   const searchBooks = (inputs: string): void => {
@@ -48,25 +56,25 @@ const Search = ({
     const filter = inputs.toLowerCase();
     let filteredBooks: BookData[] = [];
     if (
-      placeholder === "Name" ||
-      placeholder === "Publisher" ||
-      placeholder === "Author" ||
-      placeholder === "ISBN"
+      placeholder === "name" ||
+      placeholder === "publisher" ||
+      placeholder === "author" ||
+      placeholder === "isbn"
     ) {
       booksData.filter((book): void => {
         if (
-          placeholder === "Name" &&
+          placeholder === "name" &&
           book.name.toLowerCase().includes(filter)
         ) {
           filteredBooks.push(book);
         }
         if (
-          placeholder === "Publisher" &&
+          placeholder === "publisher" &&
           book.publisher.toLowerCase().includes(filter)
         ) {
           filteredBooks.push(book);
         }
-        if (placeholder === "Author") {
+        if (placeholder === "author") {
           book.authors.map((author): void => {
             if (author.toLowerCase().includes(filter)) {
               filteredBooks.push(book);
@@ -74,7 +82,7 @@ const Search = ({
           });
         }
         if (
-          placeholder === "ISBN" &&
+          placeholder === "isbn" &&
           book.isbn.toLowerCase().includes(filter)
         ) {
           filteredBooks.push(book);
@@ -82,10 +90,24 @@ const Search = ({
       });
     }
 
-    if (placeholder === "Character") {
+    if (placeholder === "character name") {
       characters.filter((character): void => {
-        const { name, aliases, characterBooks } = character;
+        const { name, characterBooks } = character;
         if (name.toLowerCase().includes(filter)) {
+          booksData.forEach((bookData): void => {
+            characterBooks.forEach((book, index): void => {
+              if (bookData.url === characterBooks[index]) {
+                filteredBooks.push(bookData);
+              }
+            });
+          });
+        }
+      });
+    }
+    if (placeholder === "character culture") {
+      characters.filter((character): void => {
+        const { characterBooks, culture } = character;
+        if (culture.toLowerCase().includes(filter)) {
           booksData.forEach((bookData): void => {
             characterBooks.forEach((book, index): void => {
               if (bookData.url === characterBooks[index]) {
@@ -110,7 +132,7 @@ const Search = ({
         <Searchbox>
           <InputBase
             ref={inputRef}
-            sx={{ letterSpacing: "0.2em", height: "3rem" }}
+            sx={{ letterSpacing: "0.2em", height: "3rem", paddingX: "0.8rem" }}
             id="searchbox"
             placeholder={`search by ${placeholder}`}
             inputProps={{
@@ -141,11 +163,13 @@ const Search = ({
             sx={{ borderWidth: "0px", borderRadius: "10px", color: "white" }}
           >
             <MenuItem value="">Search By</MenuItem>
-            <MenuItem value={"Name"}>Name</MenuItem>
-            <MenuItem value={"Publisher"}>Publisher</MenuItem>
-            <MenuItem value={"Author"}>Author</MenuItem>
-            <MenuItem value={"Isbn"}>ISBN</MenuItem>
-            <MenuItem value={"Character"}>Character Name</MenuItem>
+            {filterOptions.map((option, index) => {
+              return (
+                <MenuItem key={index} value={option.value}>
+                  {option.title}
+                </MenuItem>
+              );
+            })}
           </Select>
         </FormControl>
       </Box>

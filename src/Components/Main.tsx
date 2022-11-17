@@ -20,8 +20,9 @@ const Main = (props: Props) => {
   const [searchParams, setSearchParams] = useState<string>("");
 
   const [loading, setLoading] = useState<boolean>(true);
-  const BOOK_API = "https://www.anapioficeandfire.com/api/books";
-  const CHARACTERS_API = "https://www.anapioficeandfire.com/api/characters";
+  const BOOK_API = "https://www.anapioficeandfire.com/api/books?pageSize=12";
+  const CHARACTERS_API =
+    "https://www.anapioficeandfire.com/api/characters?page=1&pageSize=50";
 
   // Function for fetching books
   const getBooks = (API: string): void => {
@@ -38,6 +39,7 @@ const Main = (props: Props) => {
             url: book.url,
           });
         });
+        console.log(fetchedBooks);
         setLoading(false);
         setBooksData(books);
         setfilteredBooksData(books);
@@ -55,8 +57,10 @@ const Main = (props: Props) => {
             aliases: character.aliases,
             characterBooks: character.books,
             name: character.name,
+            culture: character.culture,
           });
         });
+        console.log(data);
         setCharacters(characters);
       });
   };

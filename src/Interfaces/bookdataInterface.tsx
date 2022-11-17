@@ -24,6 +24,7 @@ export interface Character {
   name: string;
   aliases: string[];
   characterBooks: string[];
+  culture: string;
 }
 
 export interface FetchedCharacter {
