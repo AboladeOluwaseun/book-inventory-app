@@ -16,17 +16,6 @@ const BookCard = ({ name, publisher, authors, isbn }: Props) => {
     { key: "ISBN", value: isbn },
   ];
 
-  const bookDetail = bookDetails.map((bookDetail, index) => {
-    return (
-      <Typography key={index} sx={{ fontSize: "1.1rem", color: "black" }}>
-        <Box component="span" sx={{ fontWeight: "700" }}>
-          {bookDetail.key}
-        </Box>
-        : {bookDetail.value}
-      </Typography>
-    );
-  });
-
   return (
     <>
       <Box
@@ -68,7 +57,21 @@ const BookCard = ({ name, publisher, authors, isbn }: Props) => {
           </Box>
         </div>
 
-        <Box padding={1}>{bookDetail}</Box>
+        <Box padding={1}>
+          {bookDetails.map((bookDetail, index) => {
+            return (
+              <Typography
+                key={index}
+                sx={{ fontSize: "1.0rem", color: "black" }}
+              >
+                <Box component="span" sx={{ fontWeight: "700" }}>
+                  {bookDetail.key}
+                </Box>
+                : {bookDetail.value}
+              </Typography>
+            );
+          })}
+        </Box>
       </Box>
     </>
   );
