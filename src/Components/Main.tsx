@@ -39,7 +39,7 @@ const Main = (props: Props) => {
             url: book.url,
           });
         });
-        console.log(fetchedBooks);
+
         setLoading(false);
         setBooksData(books);
         setfilteredBooksData(books);
@@ -60,7 +60,7 @@ const Main = (props: Props) => {
             culture: character.culture,
           });
         });
-        console.log(data);
+
         setCharacters(characters);
       });
   };
