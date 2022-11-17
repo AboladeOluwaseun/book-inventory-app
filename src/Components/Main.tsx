@@ -81,7 +81,9 @@ const Main = (props: Props) => {
       {searchParams && (
         <Box display="flex" alignItems="center" justifyContent="center">
           <Typography sx={{ marginTop: "10px", fontSize: "1.5rem" }}>
-            Search Results for {searchParams}
+            {filteredBooksData.length > 0
+              ? `Search Results for ${searchParams}:`
+              : `No search result for ${searchParams}`}
           </Typography>
         </Box>
       )}
