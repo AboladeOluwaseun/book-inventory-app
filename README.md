@@ -13,6 +13,7 @@ Live demo [_here_](https://bookinventoryapp.netlify.app/)
 - [Features](#features)
 - [Screenshots](#screenshots)
 - [Setup](#setup)
+- [Usage](#usage)
 
 ## General Information
 
@@ -33,7 +34,7 @@ mui/material - version 5.10.14
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
@@ -44,3 +45,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+## Usage
+
+- The page displays a list of book available on the platform onload.
+- To begin a search, use the select dropdown button beside the input field to select the option with which you want to search, then enter your search parameters in the input field.
