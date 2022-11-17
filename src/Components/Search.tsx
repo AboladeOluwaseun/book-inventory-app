@@ -131,6 +131,7 @@ const Search = ({
       >
         <Searchbox>
           <InputBase
+            readOnly={placeholder === "" ? true : false}
             ref={inputRef}
             sx={{ letterSpacing: "0.2em", height: "3rem", paddingX: "0.8rem" }}
             id="searchbox"
@@ -162,7 +163,9 @@ const Search = ({
             inputProps={{ "aria-label": "Without label" }}
             sx={{ borderWidth: "0px", borderRadius: "10px", color: "white" }}
           >
-            <MenuItem value="">Search By</MenuItem>
+            <MenuItem disabled value="">
+              Search By
+            </MenuItem>
             {filterOptions.map((option, index) => {
               return (
                 <MenuItem key={index} value={option.value}>
